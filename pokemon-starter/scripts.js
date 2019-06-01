@@ -9,22 +9,22 @@ $(document).ready(function(){
 			let name = response.name;
 			$("#first").empty();
 			$("#first").append(`<img src=${response.sprites.front_default} height=100px width=100px>`);
-			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}</p>`);
+			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.slice(1)}</p>`);
 			
 			//types
 			let type1 = response.types[0].type.name;
 			if(response.types.length == 1) {
-				$("#first").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}</p>`);
+				$("#first").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.slice(1)}</p>`);
 			}
 			else {
 				let type2 = response.types[1].type.name;
-				$("#first").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.substring(1,type2.length)}/${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}`);
+				$("#first").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.slice(1)}/${type1.charAt(0).toUpperCase()}${type1.slice(1)}`);
 			}
 
 			//stats
 			for(let i = 5; i >= 0; i--) {
 				let statName = response.stats[i].stat.name;
-				$("#first").append(`<p>${statName.charAt(0).toUpperCase()}${statName.substring(1,statName.length)}: ${response.stats[i].base_stat}</p>`);
+				$("#first").append(`<p>${statName.charAt(0).toUpperCase()}${statName.slice(1)}: ${response.stats[i].base_stat}</p>`);
 			}
 		});
 	}
@@ -35,38 +35,38 @@ $(document).ready(function(){
 			let name = response.name;
 			$("#second").empty();
 			$("#second").append(`<img src=${response.sprites.front_default} height=100px width=100px>`);
-			$("#second").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}</p>`);
+			$("#second").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.slice(1)}</p>`);
 			
 			//types
 			let type1 = response.types[0].type.name;
 			if(response.types.length == 1) {
-				$("#second").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}</p>`);
+				$("#second").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.slice(1)}</p>`);
 			}
 			else {
 				let type2 = response.types[1].type.name;
-				$("#second").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.substring(1,type2.length)}/${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}`);
+				$("#second").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.slice(1)}/${type1.charAt(0).toUpperCase()}${type1.slice(1)}`);
 			}
 
 			//stats
 			for(let i = 5; i >= 0; i--) {
 				let statName = response.stats[i].stat.name;
-				$("#second").append(`<p>${statName.charAt(0).toUpperCase()}${statName.substring(1,statName.length)}: ${response.stats[i].base_stat}</p>`);
+				$("#second").append(`<p>${statName.charAt(0).toUpperCase()}${statName.slice(1)}: ${response.stats[i].base_stat}</p>`);
 			}
 		});
 	}
 
 	$("#searchBtn1").click(function(e) {
-		let shiny = false;
 		e.preventDefault();
+		let shiny = false;
 		let name;
 		let input = $("#search-txt1").val();
 
 		if(input.substring(0,6) == "Shiny " || input.substring(0,6) == "shiny ") {
-			name = input.charAt(6).toLowerCase() + input.substring(7,input.length);
+			name = input.charAt(6).toLowerCase() + input.slice(7);
 			shiny = true;
 		}
 		else {
-			name = input.charAt(0).toLowerCase() + input.substring(1,input.length);
+			name = input.charAt(0).toLowerCase() + input.slice(1);
 		}
 
 		$.get(`https://pokeapi.co/api/v2/pokemon/${name}/`, function(response) {
@@ -80,39 +80,39 @@ $(document).ready(function(){
 				$("#first").append(`<img src=${response.sprites.front_default} height=100px width=100px>`);
 			}
 
-			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}</p>`);
+			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.slice(1)}</p>`);
 
 			//types
 			let type1 = response.types[0].type.name;
 			if(response.types.length == 1) {
-				$("#first").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}</p>`);
+				$("#first").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.slice(1)}</p>`);
 			}
 			else {
 				let type2 = response.types[1].type.name;
-				$("#first").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.substring(1,type2.length)}/${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}`);
+				$("#first").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.slice(1)}/${type1.charAt(0).toUpperCase()}${type1.slice(1)}`);
 			}
 
 			//stats
 			for(let i = 5; i >= 0; i--) {
 				let name = response.stats[i].stat.name;
-				$("#first").append(`<p>${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}: ${response.stats[i].base_stat}</p>`);
+				$("#first").append(`<p>${name.charAt(0).toUpperCase()}${name.slice(1)}: ${response.stats[i].base_stat}</p>`);
 			}
 		});	
 	});	
 
 	$("#searchBtn2").click(function(e) {
+		e.preventDefault();
 		let name = response.name;
 		let shiny = false;
-		e.preventDefault();
 		let name;
 		let input = $("#search-txt2").val();
 
 		if(input.substring(0,6) == "Shiny " || input.substring(0,6) == "shiny ") {
-			name = input.charAt(6).toLowerCase() + input.substring(7,input.length);
+			name = input.charAt(6).toLowerCase() + input.slice(7);
 			shiny = true;
 		}
 		else {
-			name = input.charAt(0).toLowerCase() + input.substring(1,input.length);
+			name = input.charAt(0).toLowerCase() + input.slice(1);
 		}
 
 		$.get(`https://pokeapi.co/api/v2/pokemon/${name}/`, function(response) {
@@ -128,19 +128,19 @@ $(document).ready(function(){
 			//types
 			let type1 = response.types[0].type.name;
 			if(response.types.length == 1) {
-				$("#second").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}</p>`);
+				$("#second").append(`<p>Type: ${type1.charAt(0).toUpperCase()}${type1.slice(1)}</p>`);
 			}
 			else {
 				let type2 = response.types[1].type.name;
-				$("#second").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.substring(1,type2.length)}/${type1.charAt(0).toUpperCase()}${type1.substring(1,type1.length)}`);
+				$("#second").append(`<p>Type: ${type2.charAt(0).toUpperCase()}${type2.slice(1)}/${type1.charAt(0).toUpperCase()}${type1.slice(1)}`);
 			}
 
-			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}</p>`);
-			
+			$("#first").append(`<p>Name: ${name.charAt(0).toUpperCase()}${name.slice(1)}</p>`);
+
 			//stats
 			for(let i = 5; i >= 0; i--) {
 				let name = response.stats[i].stat.name;
-				$("#second").append(`<p>${name.charAt(0).toUpperCase()}${name.substring(1,name.length)}: ${response.stats[i].base_stat}</p>`);
+				$("#second").append(`<p>${name.charAt(0).toUpperCase()}${name.slice(1)}: ${response.stats[i].base_stat}</p>`);
 			}
 		});	
 	});	
