@@ -6,6 +6,7 @@ $(document).ready(function(){
 	function getRandomPokemon1() {
 		let id = Math.floor(Math.random() * 800);
 		$.get(`https://pokeapi.co/api/v2/pokemon/${id}/`, function(response) {
+			console.log(response);
 			let name = response.name;
 			$("#first").empty();
 			$("#first").append(`<img src=${response.sprites.front_default} height=100px width=100px>`);
